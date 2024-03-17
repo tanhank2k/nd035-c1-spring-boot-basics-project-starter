@@ -18,10 +18,7 @@ public class AuthenticationService implements AuthenticationProvider {
     private UserMapper userMapper;
     @Autowired
     private HashService hashService;
-//    public AuthenticationService(UserMapper userMapper, HashService hashService) {
-//        this.userMapper = userMapper;
-//        this.hashService = hashService;
-//    }
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
@@ -32,7 +29,7 @@ public class AuthenticationService implements AuthenticationProvider {
             String encodeSalt = user.getSalt();
             String hashedPassword = hashService.getHashedValue(password, encodeSalt);
             if (Objects.equals(user.getPassword(), hashedPassword)){
-                return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
+                return new UsernamePasswordAuthenticationToken(user, password, new ArrayList<>());
             }
         }
         return null;
