@@ -31,6 +31,9 @@ public class FileController {
                 // Convert bytes to KB or MB if needed
                 String contentType = fileUpload.getContentType();
                 User userDetails = (User) authentication.getPrincipal();
+                if (fileService.checkFileExists(fileUpload.getOriginalFilename())){
+                    return "redirect:/result?isSuccess=false&errorMessage=File already exists";
+                }
                 FileInfo fileInfo = FileInfo.builder()
                         .FileSize(String.valueOf(fileSizeInBytes))
                         .FileName(fileUpload.getOriginalFilename())

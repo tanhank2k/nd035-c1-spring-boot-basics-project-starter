@@ -8,6 +8,7 @@ import java.util.List;
 public interface IFileService {
     public Integer createFile(FileInfo fileInfo);
     public File getFile(String fileId);
+    public boolean checkFileExists(String fileName);
     public List<File> getFiles(List<String> fileIds);
     public List<FileInfo> getFilesByUserId(String userId);
     public Integer updateFile(FileInfo user);

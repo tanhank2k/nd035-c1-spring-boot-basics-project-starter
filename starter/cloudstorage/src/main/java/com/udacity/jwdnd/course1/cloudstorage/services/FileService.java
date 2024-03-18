@@ -38,6 +38,16 @@ public class FileService implements IFileService {
         return null;
     }
 
+    /**
+     * @param fileName
+     * @return
+     */
+    @Override
+    public boolean checkFileExists(String fileName) {
+        File file = fileMapper.getFileByName(fileName);
+        return Objects.nonNull(file);
+    }
+
     @Override
     public List<File> getFiles(List<String> fileIds) {
         return null;
